@@ -1,0 +1,9 @@
+#!bin/bash
+echo "commit message:"
+read commitMessage
+echo "branch name:"
+read branchName
+
+git add .
+git commit -m $commitMessage
+git push origin $branchName
