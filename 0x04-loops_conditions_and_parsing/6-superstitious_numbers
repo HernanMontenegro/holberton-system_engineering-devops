@@ -7,13 +7,13 @@ do
     case $i in
         4)
             echo "Bad luck from China"
-        ;;
+            ;;
         9)
             echo "Bad luck from Japon"
-        ;;
+            ;;
         17)
             echo "Bad luck from Italy"
-        ;;
+            ;;
     esac
     ((i++))
 done
