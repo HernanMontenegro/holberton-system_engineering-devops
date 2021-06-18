@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# A clock in bash
 i=0
 while [ $i -le 12 ]
 do
