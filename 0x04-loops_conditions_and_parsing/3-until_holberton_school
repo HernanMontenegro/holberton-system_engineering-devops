@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Usage of Until for printing 'Holberton School' 10 times
 i=1
 until [ $i -ge 11 ]
 do
