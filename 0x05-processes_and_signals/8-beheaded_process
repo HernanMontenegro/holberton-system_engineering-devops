@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # crazy script invincible
 # shellcheck disable=SC2009
-pid=$(ps aux | grep 7-highlander | cut -d " " -f 4 | head -1)
+pid=$(pgrep -f 4-to_infinity_and_beyond)
 kill -9 "$pid"
