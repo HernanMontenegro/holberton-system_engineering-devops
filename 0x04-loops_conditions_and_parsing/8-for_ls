@@ -2,5 +2,5 @@
 # Displays content in list format
 for f in *
 do
-    echo "$f"
+    echo "$f" | cut -d'-' -f 2
 done
