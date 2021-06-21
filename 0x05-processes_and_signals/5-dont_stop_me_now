@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # STOPS THE PREV EXERCISE
-# shellcheck disable=SC2009
-pid=$(ps aux | grep 4-to_infinity_and_beyond | cut -d " " -f 4 | head -1)
+pid=$(pgrep 4-to_infinity_and_beyond | cut -d " " -f 4 | head -1)
 kill "$pid"
