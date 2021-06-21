@@ -1,14 +1,37 @@
 #!/usr/bin/env bash
-# Do crazy stuff with demons and Ocultism things
-sudo touch /var/run/holbertonscript.pid
-sudo chmod 777 /var/run/holbertonscript.pid
-echo $$ > /var/run/holbertonscript.pid
-i=0
-while [ $i ]
-do
-    echo "To infinity and beyond"
-    trap 'echo I hate the kill command; sudo rm /var/run/holbertonscript.pid; exit' TERM
-    trap 'echo Y U no love me?!' INT
-    trap 'sudo rm /var/run/holbertonscript.pid; exit' QUIT
-    sleep 2
-done
+# Manage my process
+
+start_pros() {
+    ./manage_my_process &
+    sudo touch /var/run/my_process.pid
+    if [ $# -ne 0 ]
+    then
+        echo "$1"
+    fi
+}
+
+stop_pros() {
+    sudo rm /var/run/my_process.pid
+    if [ $# -ne 0 ]
+    then
+        echo "$1"
+    fi
+    pkill -f "manage_my_process"
+}
+
+if [ $# == "0" ] || [ $1 == "" ]
+then
+    echo "Usage: manage_my_process {start|stop|restart}"
+    exit;
+elif [ $1 == "start" ]
+then
+    start_pros "manage_my_process started"
+elif [ $1 == "stop" ]
+then
+    stop_pros "manage_my_process stopped"
+elif [ $1 == "restart" ]
+then
+    sudo rm /var/run/my_process.pid
+    pkill -P $$
+    start_pros "manage_my_process restarted"
+fi
