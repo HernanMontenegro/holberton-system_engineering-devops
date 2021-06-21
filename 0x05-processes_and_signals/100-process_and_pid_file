@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Have it's own life
+sudo touch /var/run/holbertonscript.pid
+sudo chmod 777 /var/run/holbertonscript.pid
+echo $$ > /var/run/holbertonscript.pid
+i=0
+while [ $i ]
+do
+    echo "To infinity and beyond"
+    trap 'echo I hate the kill command; sudo rm /var/run/holbertonscript.pid; exit' TERM
+    trap 'echo Y U no love me?!' INT
+    trap 'sudo rm /var/run/holbertonscript.pid; exit' QUIT
+    sleep 2
+done
