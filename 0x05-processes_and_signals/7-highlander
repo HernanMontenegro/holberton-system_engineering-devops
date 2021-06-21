@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# crazy script invincible
+i=0
+while [ $i ]
+do
+    trap 'echo I am invincible!!!' TERM
+    echo "To infinity and beyond"
+    sleep 2
+done
