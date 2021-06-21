@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Write a Bash script that displays 'To infinity' and beyond indefinitely
+# shellcheck disable=SC2009
+pid=$(ps aux | grep 4-to_infinity_and_beyond | cut -d " " -f 4 | head -1)
+kill "$pid"
