@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <sys/types.h>
+#include <stdlib.h>
 #include <unistd.h>
 
 int infinite_while(void);
@@ -17,18 +18,13 @@ int main(void)
 	for (i = 1; i <= 5; i++)
 	{
 		child_pid = fork();
-		if (child_pid == -1)
+		if (child_pid > 0)
 		{
-			perror("Fork failed");
-			return (1);
-		}
-		if (child_pid == 0)
-		{
-			pause();
+			printf("Zombie process created, PID: %d\n", child_pid);
 		}
 		else
 		{
-			printf("Zombie process created, PID: %d\n", child_pid);
+			exit(0);
 		}
 	}
 	infinite_while();
