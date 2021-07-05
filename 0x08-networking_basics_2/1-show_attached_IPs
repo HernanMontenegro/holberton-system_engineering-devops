@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Displays all active ipv4
+
+ip -4 -o addr | cut -d " " -f 7
