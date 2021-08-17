@@ -8,6 +8,5 @@ sed -i '/server_name _/a rewrite ^/redirect_me/ https://www.youtube.com/watch?v=
 service nginx restart
 
 echo "Ceci n'est pas une page" > /var/www/html/404_error_code.html
-echo "" >> /var/www/html/404_error_code.html
 sed -i '/ location/a error_page 404 /404_error_code.html;\n' /etc/nginx/sites-available/default
 service nginx restart
