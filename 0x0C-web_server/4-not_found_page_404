@@ -4,5 +4,5 @@
 apt-get install -y nginx
 chown -R "$USER":"$USER" /var/www/html
 echo "Ceci n'est pas une page" > /var/www/html/404_error_code.html
-sed -i '/server_name _/a error_page 404 /var/www/html/404_error_code.html;\n' /etc/nginx/sites-available/default
+sed -i '/server_name _/a error_page 404 /404_error_code.html;\n' /etc/nginx/sites-available/default
 service nginx restart
