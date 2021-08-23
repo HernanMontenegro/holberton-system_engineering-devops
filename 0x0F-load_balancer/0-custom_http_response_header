@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 # Set a custom server for knowing which hostname answered
-name=$(hostname)
-sed -i "/server_name _/a add_header X-Served-By ${name} always;\n" /etc/nginx/sites-available/default
+sed -i "/server_name _/a add_header X-Served-By ${HOSTNAME} always;\n" /etc/nginx/sites-available/default
 service nginx restart
