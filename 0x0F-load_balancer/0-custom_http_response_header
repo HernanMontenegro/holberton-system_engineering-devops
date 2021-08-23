@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 # Set a custom server for knowing which hostname answered
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+
 sed -i "/server_name _/a add_header X-Served-By ${HOSTNAME} always;\n" /etc/nginx/sites-available/default
 service nginx restart
