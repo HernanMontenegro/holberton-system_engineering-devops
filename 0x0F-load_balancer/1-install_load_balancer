@@ -5,6 +5,11 @@ add-apt-repository -y ppa:vbernat/haproxy-1.5
 apt-get update
 apt-get install -y haproxy
 chown "$USER":"$USER" /etc/haproxy/haproxy.cfg
+printf %s "# Holberton Server configurations
+127.0.0.1 haproxy.local
+35.227.18.212 web1.local
+35.185.5.35 web2.local" >> /etc/hosts
+echo "ENABLED=1" >> /etc/default/haproxy
 printf %s "
 
     frontend http
