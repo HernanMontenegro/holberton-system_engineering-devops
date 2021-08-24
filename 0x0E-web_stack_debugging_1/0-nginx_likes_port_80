@@ -3,4 +3,6 @@
 sudo apt-get update
 sudo apt-get install -y nginx
 
-sudo sed 's/\blisten\b/& 80/'
+sudo cat /etc/nginx/sites-available/default > /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
