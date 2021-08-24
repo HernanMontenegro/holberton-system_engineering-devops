@@ -1,16 +1,15 @@
 # Add new header with puppet
 
-exec { 'update'
-    command => 'sudo apt-get update'
-    provider => 'shell'
+exec { 'update':
+  command => '/usr/bin/apt update',
 }
 
 package { 'nginx':
     ensure  => present,
-    require => Exec['apt-update'],
+    require => Exec['update'],
 }
 
-file_line {'Adding_Header':
+file_line {'Header':
     ensure  => 'present',
     path    => '/etc/nginx/sites-available/default',
     after   => 'listen 80 default_server;',
