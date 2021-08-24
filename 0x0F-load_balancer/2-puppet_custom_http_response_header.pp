@@ -1,9 +1,24 @@
 # Add new header with puppet
 
-exec { 'add X-Served-By header':
-    command => 'sudo apt-get update;
-                sudo apt-get install nginx;
-                sudo sed -i "/server_name _/a add_header X-Served-By $HOSTNAME always;\n" /etc/nginx/sites-available/default;
-                sudo service nginx restart',
-    provider => 'shell',
+exec { 'update'
+    command => 'sudo apt-get update'
+    provider => 'shell'
+}
+
+package { 'nginx':
+    ensure  => present,
+    require => Exec['apt-update'],
+}
+
+file_line {'Adding_Header':
+    ensure  => 'present',
+    path    => '/etc/nginx/sites-available/default',
+    after   => 'listen 80 default_server;',
+    line    => 'add_header X-Served-By $hostname;',
+    require => Package['nginx'],
+}
+
+service { 'nginx':
+    ensure  => running,
+    require => Package['nginx'],
 }
