@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Debugging ex 0
+sudo apt-get update
+sudo apt-get install -y nginx
+
+sudo sed 's/\blisten\b/& 80/'
