@@ -1,16 +1,10 @@
 #!/usr/bin/env bash
 # Set a custom server for knowing which hostname answered
-apt-get install -y software-properties-common
-add-apt-repository -y ppa:vbernat/haproxy-1.5
-apt-get update
-apt-get install -y haproxy
-chown "$USER":"$USER" /etc/haproxy/haproxy.cfg
-printf %s "# Holberton Server configurations
-127.0.0.1 haproxy.local
-35.227.18.212 web1.local
-35.185.5.35 web2.local" >> /etc/hosts
-echo "ENABLED=1" >> /etc/default/haproxy
-printf %s "
+
+sudo apt-get update -y
+sudo apt-get install haproxy=1.5.\* -y
+
+sudo printf %s "
 
     frontend http
         bind *:80
@@ -27,4 +21,4 @@ printf %s "
         server 2770-web-02 35.185.5.35:80 check
 " >> /etc/haproxy/haproxy.cfg
 
-service haproxy restart
+sudo service haproxy restart
