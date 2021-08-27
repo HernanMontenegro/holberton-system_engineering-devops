@@ -48,5 +48,3 @@ defaults
         http-request add-header X-Forwarded-Proto https if { ssl_fc }
         server 2770-web-01 35.227.18.212:80 check
         server 2770-web-02 35.185.5.35:80 check
-
-    
