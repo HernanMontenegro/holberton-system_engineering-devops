@@ -9,7 +9,8 @@ process()
     do
         record_type=$(dig www.holberton.online | grep -A1 'ANSWER SECTION:' | tail -n1 | awk -F'\t' '{print $4}')
         ip=$(dig ${sub}."$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | awk -F' ' '{print $NF}')
-        echo "The subdomain ${sub} is a ${record_type} record and points to ${ip}"
+        response="The subdomain ${sub} is a ${record_type} record and points to ${ip}"
+        awk -v var="$response" 'BEGIN {print var}'
     done
 }
 
