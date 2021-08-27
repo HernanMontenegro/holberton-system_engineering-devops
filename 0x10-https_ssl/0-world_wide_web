@@ -4,7 +4,7 @@
 process()
 {
     subdomains=(www lb-01 web-01 web-02)
-    if [ "$#" -eq 2 && "$2" ]; then subdomains=("$2") ; fi
+    if [ "$2" ]; then subdomains=("$2") ; fi
     for sub in "${subdomains[@]}"
     do
         record_type=$(dig www.holberton.online | grep -A1 'ANSWER SECTION:' | tail -n1 | awk -F'\t' '{print $4}')
@@ -13,4 +13,4 @@ process()
     done
 }
 
-process() $1 $2
+process $1 $2
