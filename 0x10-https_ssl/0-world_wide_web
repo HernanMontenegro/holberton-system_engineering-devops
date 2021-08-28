@@ -7,7 +7,7 @@ process()
     if [ "$2" ]; then subdomains=("$2") ; fi
     for sub in "${subdomains[@]}"
     do
-        record_type=$(dig ${sub}."$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | awk -F'\t' '{print $4}')
+        record_type=$(dig www.holberton.online | grep -A1 'ANSWER SECTION:' | tail -n1 | awk -F'\t' '{print $4}')
         ip=$(dig ${sub}."$1" | grep -A1 'ANSWER SECTION:' | tail -n1 | awk -F' ' '{print $NF}')
         echo "The subdomain ${sub} is a ${record_type} record and points to ${ip}"
     done
