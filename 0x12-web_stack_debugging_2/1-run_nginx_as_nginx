@@ -2,6 +2,6 @@
 # Config NGNIX
 
 chmod 744 /etc/nginx/nginx.conf
-sudo -H -u nginx bash -c 'sed -i "/listen 80 default_server;/a listen 8080 default server;\n" /etc/nginx/sites-available/default'
-sudo -H -u nginx bash -c 'sed -i "/listen [::]:80 default_server;/a listen [::]:8080 default_server;\n" /etc/nginx/sites-available/default'
+sed -i '/listen 80 default_server;/a listen 8080 default server;\n' /etc/nginx/sites-available/default
+sed -i '/listen [::]:80 default_server;/a listen [::]:8080 default_server;\n' /etc/nginx/sites-available/default
 sudo -H -u nginx bash -c 'service nginx restart'
