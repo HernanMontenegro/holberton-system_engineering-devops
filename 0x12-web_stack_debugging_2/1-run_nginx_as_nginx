@@ -2,5 +2,6 @@
 # Config NGNIX
 
 chmod 744 /etc/nginx/nginx.conf
+sed -i "1iuser nginx;" /etc/nginx/nginx.conf
 sed -i 's/80/ 8080/g' /etc/nginx/sites-available/default
 sudo -H -u nginx bash -c 'service nginx restart'
