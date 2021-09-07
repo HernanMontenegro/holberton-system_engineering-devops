@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+sudo -H -u nginx bash -c 'service nginx restart'
+sudo -H -u nginx bash -c 'sed -i "/listen 80 default_server;/a listen 8080 default server;\n" /etc/nginx/sites-available/default'
+sudo -H -u nginx bash -c 'sed -i "/listen [::]:80 default_server;/a listen [::]:8080 default_server;\n" /etc/nginx/sites-available/default'
