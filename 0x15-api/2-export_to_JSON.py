@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-''' same as 0 but export data in the CSV format '''
+''' same as 0 but export data in the json format '''
 
 
 import requests
