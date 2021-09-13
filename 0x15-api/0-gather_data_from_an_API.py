@@ -1,31 +1,27 @@
 #!/usr/bin/python3
 ''' returns information about empleyee TODO list progress. '''
 
-
-import requests as req
+import requests
 from sys import argv as av
 
 
-if (__name__ == '__main__'):
-    url = 'https://jsonplaceholder.typicode.com/todos?userId={}'.format(av[1])
-    t = req.get(url)
-    u = req.get('https://jsonplaceholder.typicode.com/users?id={}'
-                .format(av[1]))
+if __name__ == "__main__":
+    user = requests.get('https://jsonplaceholder.typicode.com/users?id={}'
+                        .format(av[1]))
+    tasks = requests.get('https://jsonplaceholder.typicode.com/todos?userId={}'
+                         .format(av[1]))
+    usrDb = user.json()
+    taskArr = tasks.json()
+    usrName = usrDb[0]['name']
+    doneTasks = 0
 
-    taskList = t.json()
-    userDb = u.json()[0]
-    tasksTitles = ""
-    tlen = len(taskList)
-    tsk = 0
+    for item in taskArr:
+        if item['completed']:
+            doneTasks += 1
 
-    for item in taskList:
-        if (item.get('completed')):
-            tsk += 1
+    print("Employee {} is done with tasks({}/{}):".
+          format(usrName, doneTasks, len(taskArr)))
 
-    n = userDb.get('name')
-    r = "Employee {} is done with tasks({}/{})".format(n, tsk, tlen)
-    print(r)
-
-    for item in taskList:
-        if (item.get('completed')):
+    for item in taskArr:
+        if item['completed']:
             print("\t {}".format(item.get('title')))
