@@ -22,8 +22,6 @@ if (__name__ == '__main__'):
             tsk += 1
 
     n = userDb.get('name')
-    tsk = str(tsk)
-    tlen = str(tlen)
     r = "Employee {} is done with tasks({}/{})".format(n, tsk, tlen)
     print(r)
 
