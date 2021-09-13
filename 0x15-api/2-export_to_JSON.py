@@ -8,11 +8,12 @@ from sys import argv as av
 
 
 if (__name__ == '__main__'):
-    t = req.get(f'https://jsonplaceholder.typicode.com/todos?userId={av[1]}')
-    u = req.get(f'https://jsonplaceholder.typicode.com/users?id={av[1]}')
+    url = 'https://jsonplaceholder.typicode.com/todos?userId=' + av[1]
+    t = req.get(url)
+    u = req.get(f'https://jsonplaceholder.typicode.com/users?id=' + av[1])
 
-    taskList = json.loads(t.text)
-    userDb = json.loads(u.text)[0]
+    taskList = t.json()
+    userDb = u.json()[0]
     json_dict = {}
     aux_list = []
 

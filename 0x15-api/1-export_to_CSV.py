@@ -20,7 +20,6 @@ if (__name__ == '__main__'):
     for t in t.json():
         st = t.get('completed')
         ti = t.get('title')
-
         status.append(st)
         titles.append(ti)
 
