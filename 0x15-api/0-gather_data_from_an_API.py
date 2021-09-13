@@ -13,19 +13,18 @@ if (__name__ == '__main__'):
 
     taskList = t.json()
     userDb = u.json()[0]
-    tsk = 0
     tasksTitles = ""
     tlen = len(taskList)
+    tsk = 0
 
-    for i in range(0, tlen):
-        item = taskList[i]
+    for item in taskList:
         if (item.get('completed')):
             tsk += 1
 
     n = userDb.get('name')
     tsk = str(tsk)
     tlen = str(tlen)
-    r = "Employee " + n + " is done with tasks(" + tsk + "/" + tlen + ")"
+    r = "Employee {} is done with tasks({}/{})".format(n, tsk, tlen)
     print(r)
 
     for item in taskList:
