@@ -23,7 +23,6 @@ if (__name__ == '__main__'):
         status.append(st)
         titles.append(ti)
 
-
     with open(f'{userId}.csv', 'w') as f:
         csvwriter = csv.writer(f, quotechar='"', quoting=csv.QUOTE_ALL)
         for i in range(0, len(status)):
