@@ -21,11 +21,13 @@ if (__name__ == '__main__'):
         item = taskList[i]
         if (item.get('completed')):
             tsk += 1
-            tasksTitles += ('\t ' + item.get('title')) + '\n'
 
     n = userDb.get('name')
     tsk = str(tsk)
     tlen = str(tlen)
     r = "Employee " + n + " is done with tasks(" + tsk + "/" + tlen + ")"
     print(r)
-    print(tasksTitles, end="")
+
+    for item in taskList:
+        if (item.get('completed')):
+            print("\t {}".format(item.get('title')))
