@@ -12,21 +12,22 @@ if (__name__ == '__main__'):
     t = req.get(f'https://jsonplaceholder.typicode.com/todos?userId={av[1]}')
     u = req.get(f'https://jsonplaceholder.typicode.com/users?id={av[1]}')
 
-    taskList = t.json()
-    userDb = u.json()[0]
+    taskList = json.loads(t.text)
+    userDb = json.loads(u.text)[0]
     userId = userDb.get('id')
     userName = userDb.get('name')
-    content = []
-    fields = ["USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"]
 
+    status = []
+    titles = []
+    for t in taskList:
+        st = t.get('completed')
+        ti = t.get('title')
 
-    for i in range(0, len(taskList)):
-        item = taskList[i]
-        taskTitle = item.get('title')
-        status = item.get('completed')
-        content.append([userId, userName, status, taskTitle])
+        status.append(st)
+        titles.append(ti)
+
 
     with open(f'{userId}.csv', 'w') as f:
-        csvwriter = csv.writer(f)
-        csvwriter.writerow(fields)
-        csvwriter.writerows(content)
+        csvwriter = csv.writer(f, quotechar='"', quoting=csv.QUOTE_ALL)
+        for i in range(0, len(status)):
+            csvwriter.writerow([userId, userName, status[i], titles[i]])
