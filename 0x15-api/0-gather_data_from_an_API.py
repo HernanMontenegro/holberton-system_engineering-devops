@@ -1,28 +1,27 @@
 #!/usr/bin/python3
 ''' returns information about empleyee TODO list progress. '''
 
-import requests
+import requests as req
 from sys import argv as av
 import json
 
 
 if (__name__ == '__main__'):
-    taskList = requests.get('https://jsonplaceholder.typicode.com/todos?userId={}'.format(av[1]))
-    userDb = requests.get('https://jsonplaceholder.typicode.com/users?id={}'.format(av[1]))
+    t = req.get(f'https://jsonplaceholder.typicode.com/todos?userId={av[1]}')
+    u = req.get(f'https://jsonplaceholder.typicode.com/users?id={av[1]}')
 
-    taskListobj = json.loads(taskList.text)
-    userDb = json.loads(userDb.text)[0]
+    taskList = json.loads(t.text)
+    userDb = json.loads(u.text)[0]
     doneTasks = 0
     tasksTitles = ""
-    taskListLength = len(taskListobj)
+    taskListLength = len(taskList)
 
-    for i in  range(0, taskListLength):
-        item = taskListobj[i]
-        if (item['completed'] == True):
+    for i in range(0, taskListLength):
+        item = taskList[i]
+        if (item['completed']):
             doneTasks += 1
-        tasksTitles += ('\t ' + item['title'])
-        if (i != taskListLength - 1):
-            tasksTitles += '\n'
+            tasksTitles += ('\t ' + item['title']) + '\n'
 
-    print(f"Employee {userDb['name']} is done with tasks({doneTasks}/{taskListLength})")
-    print(tasksTitles)
+    nam = userDb['name']
+    print(f"Employee {nam} is done with tasks({doneTasks}/{taskListLength})")
+    print(tasksTitles, end="")

@@ -2,17 +2,17 @@
 ''' same as 0 but export data in the json format '''
 
 
-import requests
+import requests as req
 from sys import argv as av
 import json
 
 
 if (__name__ == '__main__'):
-    taskList = requests.get('https://jsonplaceholder.typicode.com/todos?userId={}'.format(av[1]))
-    userDb = requests.get('https://jsonplaceholder.typicode.com/users?id={}'.format(av[1]))
+    t = req.get(f'https://jsonplaceholder.typicode.com/todos?userId={av[1]}')
+    u = req.get(f'https://jsonplaceholder.typicode.com/users?id={av[1]}')
 
-    taskList = json.loads(taskList.text)
-    userDb = json.loads(userDb.text)[0]
+    taskList = json.loads(t.text)
+    userDb = json.loads(u.text)[0]
     json_dict = {}
     aux_list = []
 
