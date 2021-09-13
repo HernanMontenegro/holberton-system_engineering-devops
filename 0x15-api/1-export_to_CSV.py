@@ -4,7 +4,6 @@
 
 import requests as req
 from sys import argv as av
-import json
 import csv
 
 
@@ -12,14 +11,12 @@ if (__name__ == '__main__'):
     t = req.get(f'https://jsonplaceholder.typicode.com/todos?userId={av[1]}')
     u = req.get(f'https://jsonplaceholder.typicode.com/users?id={av[1]}')
 
-    taskList = json.loads(t.text)
-    userDb = json.loads(u.text)[0]
-    userId = userDb.get('id')
-    userName = userDb.get('name')
+    userId = u.json()[0].get('id')
+    userName = u.json()[0].get('name')
 
     status = []
     titles = []
-    for t in taskList:
+    for t in t.json():
         st = t.get('completed')
         ti = t.get('title')
 
