@@ -1,27 +1,31 @@
 #!/usr/bin/python3
 ''' returns information about empleyee TODO list progress. '''
 
+
 import requests as req
 from sys import argv as av
-import json
 
 
 if (__name__ == '__main__'):
-    t = req.get(f'https://jsonplaceholder.typicode.com/todos?userId={av[1]}')
-    u = req.get(f'https://jsonplaceholder.typicode.com/users?id={av[1]}')
+    url = 'https://jsonplaceholder.typicode.com/todos?userId=' + av[1]
+    t = req.get(url)
+    u = req.get('https://jsonplaceholder.typicode.com/users?id=' + av[1])
 
-    taskList = json.loads(t.text)
-    userDb = json.loads(u.text)[0]
-    doneTasks = 0
+    taskList = t.json()
+    userDb = u.json()[0]
+    tsk = 0
     tasksTitles = ""
-    taskListLength = len(taskList)
+    tlen = len(taskList)
 
-    for i in range(0, taskListLength):
+    for i in range(0, tlen):
         item = taskList[i]
-        if (item['completed']):
-            doneTasks += 1
-            tasksTitles += ('\t ' + item['title']) + '\n'
+        if (item.get('completed')):
+            tsk += 1
+            tasksTitles += ('\t ' + item.get('title')) + '\n'
 
-    nam = userDb['name']
-    print(f"Employee {nam} is done with tasks({doneTasks}/{taskListLength})")
+    n = userDb.get('name')
+    tsk = str(tsk)
+    tlen = str(tlen)
+    r = "Employee " + n + " is done with tasks(" + tsk + "/" + tlen + ")"
+    print(r)
     print(tasksTitles, end="")

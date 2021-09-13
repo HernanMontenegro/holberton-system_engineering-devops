@@ -2,9 +2,9 @@
 ''' same as 0 but export data in the json format '''
 
 
+import json
 import requests as req
 from sys import argv as av
-import json
 
 
 if (__name__ == '__main__'):

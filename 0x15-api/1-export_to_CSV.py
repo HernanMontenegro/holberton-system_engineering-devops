@@ -2,9 +2,9 @@
 ''' same as 0 but export data in the CSV format '''
 
 
+import csv
 import requests as req
 from sys import argv as av
-import csv
 
 
 if (__name__ == '__main__'):
