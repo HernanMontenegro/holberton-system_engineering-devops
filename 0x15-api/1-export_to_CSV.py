@@ -8,8 +8,9 @@ from sys import argv as av
 
 
 if (__name__ == '__main__'):
-    t = req.get(f'https://jsonplaceholder.typicode.com/todos?userId={av[1]}')
-    u = req.get(f'https://jsonplaceholder.typicode.com/users?id={av[1]}')
+    url = 'https://jsonplaceholder.typicode.com/todos?userId=' + av[1]
+    t = req.get(url)
+    u = req.get('https://jsonplaceholder.typicode.com/users?id=' + av[1])
 
     userId = u.json()[0].get('id')
     userName = u.json()[0].get('name')
@@ -23,7 +24,7 @@ if (__name__ == '__main__'):
         status.append(st)
         titles.append(ti)
 
-    with open(f'{userId}.csv', 'w') as f:
+    with open('{}.csv'.format(userId), 'w') as f:
         csvwriter = csv.writer(f, quotechar='"', quoting=csv.QUOTE_ALL)
         for i in range(0, len(status)):
             csvwriter.writerow([userId, userName, status[i], titles[i]])
