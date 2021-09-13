@@ -5,6 +5,7 @@
 import requests as req
 from sys import argv as av
 import json
+import csv
 
 
 if (__name__ == '__main__'):
@@ -15,13 +16,17 @@ if (__name__ == '__main__'):
     userDb = json.loads(u.text)[0]
     userId = userDb['id']
     userName = userDb['name']
-    content = ""
+    content = []
+    fields = ["USER_ID","USERNAME","TASK_COMPLETED_STATUS","TASK_TITLE"]
+
 
     for i in range(0, len(taskList)):
         item = taskList[i]
         taskTitle = item['title']
         status = item['completed']
-        content += f'"{userId}","{userName}","{status}","{taskTitle}"\n'
+        content.append([userId, userName, status, taskTitle])
 
     with open(f'{userId}.csv', 'w') as f:
-        f.write(content)
+        csvwriter = csv.writer(f)
+        csvwriter.writerow(fields)
+        csvwriter.writerows(content)
