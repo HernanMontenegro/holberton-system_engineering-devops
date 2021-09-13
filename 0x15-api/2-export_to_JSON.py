@@ -18,7 +18,11 @@ if (__name__ == '__main__'):
     aux_list = []
 
     for item in taskList:
-        aux_list.append(item)
+        aux = {}
+        aux['task'] = item.get('title')
+        aux['completed'] = item.get('completed')
+        aux['username'] = userDb.get('username')
+        aux_list.append(aux)
 
     json_dict[av[1]] = aux_list
 
