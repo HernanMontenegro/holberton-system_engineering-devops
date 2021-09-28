@@ -10,8 +10,8 @@ def top_ten(subreddit):
 
     if (reddit.status_code >= 200 and reddit.status_code <= 299):
         reddict = reddit.json()
-        childrenList = reddict['data']['children']
+        childrenList = reddict.get('data').get('children')
         for i in range(0, len(childrenList)):
-            print(childrenList[i]['data']['title'])
+            print(childrenList[i].get('data').get('title'))
         return
     return print('None')
