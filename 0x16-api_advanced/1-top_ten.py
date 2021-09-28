@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+'''top 10 in subreddit'''
 
 import requests as req
 
@@ -14,4 +15,4 @@ def top_ten(subreddit):
         for i in range(0, len(childrenList)):
             print(childrenList[i].get('data').get('title'))
         return
-    return print('None')
+    print(None)
